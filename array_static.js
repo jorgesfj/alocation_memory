@@ -15,6 +15,7 @@ class ArrayStatic {
             if(this.row.indexOf(process) != -1) {
                 this.row.splice(this.row.indexOf(process),this.row.indexOf(process)+1);
             }
+            console.log("O processo: " + process.nameProcess + " esta ocupando memoria");
             let position = this.list.length;
             this.list += process.nameProcess;
             this.countTime(process,position);
@@ -24,14 +25,13 @@ class ArrayStatic {
 
     sendToRow(process) {
         this.row.push(process);
-        console.log(this.row)
+        console.log("O processo: " + process.nameProcess+ " foi adicionado a lista de espera.");
     }
 
     async countTime(process,position) {
         await this.delay(process.timeProcess);
         console.log("O processo: "+ process.nameProcess +" acabou e liberou: " + process.nameProcess.length + " bits de espaço");
         this.list = this.list.replace(process.nameProcess, "");
-        console.log(this.list);
         if(this.row[0] != undefined) {
             this.setProcess(this.row[0]);
         }
